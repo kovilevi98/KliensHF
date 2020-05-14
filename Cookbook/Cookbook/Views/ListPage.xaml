@@ -1,0 +1,42 @@
+﻿<Page
+    x:Class="Cookbook.Views.ListPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Cookbook.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:Cookbook.ViewModels" xmlns:controls="using:Template10.Controls"
+    xmlns:models="using:Cookbook.Models"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <vm:MainPageViewModel x:Name="ViewModel"/>
+    </Page.DataContext>
+    <ScrollViewer>
+   
+    <StackPanel>
+        <TextBlock Text="{x:Bind vm:ListPageViewModel.Result}" FontSize="38" HorizontalAlignment="Center" Name="result"/>
+        <GridView ItemsSource="{x:Bind vm:ListPageViewModel.ResultList}" HorizontalAlignment="Center" IsItemClickEnabled="True" ItemClick="GridView_ItemClick">
+            <GridView.ItemTemplate>
+                <DataTemplate x:Name="ImageOverlayDataTemplate" x:DataType="models:BookEntity">
+                    <Grid Height="320" Width="180" AutomationProperties.Name="{x:Bind Img}">
+                        <Image Source="{x:Bind Img}" Stretch="Uniform"/>
+                        <StackPanel Orientation="Vertical" Height="60" VerticalAlignment="Bottom" Background="{ThemeResource SystemBaseMediumHighColor}" Padding="12">
+                            <TextBlock Text="{x:Bind Title}"  Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemAccentColorLight1}"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid MaximumRowsOrColumns="9" Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+        </GridView>
+        <Button Name="BackButton" Click="BackButton_Click" Content="Back" Margin="80" FontSize="20"/>
+    </StackPanel>
+
+    </ScrollViewer>
+
+</Page>
