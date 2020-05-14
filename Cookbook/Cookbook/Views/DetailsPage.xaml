@@ -9,23 +9,33 @@
     xmlns:models="using:Cookbook.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
     <Page.DataContext>
-        <vm:MainPageViewModel x:Name="ViewModel"/>
+        <vm:DetailsPageViewModel x:Name="ViewModel"/>
     </Page.DataContext>
 
-    <RelativePanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                      <TextBlock x:Name="img" Text="test"/>
-                      <TextBlock x:Name="title" RelativePanel.RightOf="img" RelativePanel.AlignTopWith="img" Text="{x:Bind vm:DetailsPageViewModel.details.AuthorName}"/>
-                     <TextBlock x:Name="authors"
-                            RelativePanel.RightOf="img"
-                            RelativePanel.Below="title"
-                            Text="test"/>
-                     <TextBlock x:Name="summary"
-                            RelativePanel.RightOf="img"
-                            RelativePanel.Below="authors"
-                            Text="test"/>    
-                    <Button Content="Download" RelativePanel.RightOf="img"
-                             RelativePanel.Below="summary"/>
-     </RelativePanel>
+
+
+    <RelativePanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Image x:Name="img" Source="{Binding Details.img, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="200" Height="300" Stretch="Uniform"/>
+            <TextBlock x:Name="title"
+                        RelativePanel.RightOf="img"
+                        RelativePanel.AlignTopWith="img"/>
+            <TextBlock x:Name="authors"
+                       Text="{Binding Details.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="30"
+                        RelativePanel.RightOf="img"
+                        RelativePanel.Below="title"/>
+             <TextBlock x:Name="summary"
+                        Text="{Binding Details.AuthorName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="30"
+                        RelativePanel.RightOf="img"
+                        RelativePanel.Below="authors" />
+              <TextBlock x:Name="authorurl"
+                        Text="{Binding Details.AuthorUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="30"
+                        RelativePanel.RightOf="img"
+                        RelativePanel.Below="summary" />
+           <Button Content="Download"
+                   RelativePanel.Below="authorurl"
+                   RelativePanel.RightOf="img"
+                        RelativePanel.AlignBottomWithPanel="True" />
+</RelativePanel>
+    
 </Page>

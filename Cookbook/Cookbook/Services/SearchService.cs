@@ -43,6 +43,22 @@ namespace Cookbook.Services
             return imgsrc;
         }
 
+        public ImageSource GetImgFromUrl(String s)
+        {
+            ImageSource imgsrc;
+            if (s == null)
+            {
+                imgsrc = new BitmapImage(new Uri("ms-appx:///Assets/sample.png"));
+            }
+            else
+            {
+                Uri newServerUrl = new Uri("http://covers.openlibrary.org");
+                Uri url = new Uri(s);
+                imgsrc = new BitmapImage(url);
+            }
+            return imgsrc;
+        }
+
         private async Task<T> GetAsync<T>(Uri uri)
         {
             using (var client = new HttpClient())

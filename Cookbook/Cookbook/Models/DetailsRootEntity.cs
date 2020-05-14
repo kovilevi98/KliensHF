@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media;
 
 namespace Cookbook.Models
 {
@@ -80,5 +82,8 @@ namespace Cookbook.Models
         public string ImageL { get; set; }
         public string Title { get; set; }
         public int Pages { get; set; }
+        public ImageSource img { get; set; }
+
+        
     }
 }

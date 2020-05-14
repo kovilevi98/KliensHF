@@ -29,7 +29,9 @@ namespace Cookbook.Views
         public DetailsPage()
         {
             this.InitializeComponent();
-            detailsPageViewModel = new DetailsPageViewModel(BookEntity);
+            detailsPageViewModel = new DetailsPageViewModel();
+            detailsPageViewModel.SetBook(BookEntity);
+            DataContext = detailsPageViewModel;
             GetList();
         }
 

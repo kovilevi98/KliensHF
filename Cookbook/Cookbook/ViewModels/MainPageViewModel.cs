@@ -19,6 +19,7 @@ namespace Cookbook.ViewModels
     public class MainPageViewModel : ViewModelBase
     {
         // TODO get data from webservice
+        public string test = "asd";
         public MainPageViewModel()
         {
            
