@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cookbook.Models
 {
+    /// <summary>
+    /// Class which is contain iformations about what the search URL will cointain
+    /// </summary>
     class SearchEntities
     {
         public String Title { get; set; }

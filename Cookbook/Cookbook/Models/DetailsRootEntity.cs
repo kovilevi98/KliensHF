@@ -1,79 +1,76 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Media;
+﻿using Windows.UI.Xaml.Media;
 
 namespace Cookbook.Models
 {
-
+    /// <summary>
+    /// Generated classes from an API call for one Book, they containd all information for one book
+    /// </summary>
     public class ISBN
     {
-        public Publisher[] publishers { get; set; }
-        public string pagination { get; set; }
-        public Identifiers identifiers { get; set; }
-        public Classifications classifications { get; set; }
-        public string title { get; set; }
-        public string url { get; set; }
-        public string notes { get; set; }
-        public int number_of_pages { get; set; }
-        public Cover cover { get; set; }
-        public Subject[] subjects { get; set; }
-        public string publish_date { get; set; }
-        public string key { get; set; }
-        public Author[] authors { get; set; }
-        public string by_statement { get; set; }
-        public Publish_Places[] publish_places { get; set; }
+        public Publisher[] Publishers { get; set; }
+        public string Pagination { get; set; }
+        public Identifiers Identifiers { get; set; }
+        public Classifications Classifications { get; set; }
+        public string Title { get; set; }
+        public string Url { get; set; }
+        public string Notes { get; set; }
+        public int Number_of_pages { get; set; }
+        public Cover Cover { get; set; }
+        public Subject[] Subjects { get; set; }
+        public string Publish_date { get; set; }
+        public string Key { get; set; }
+        public Author[] Authors { get; set; }
+        public string By_statement { get; set; }
+        public Publish_Places[] Publish_places { get; set; }
     }
 
     public class Identifiers
     {
-        public string[] lccn { get; set; }
-        public string[] openlibrary { get; set; }
-        public string[] isbn_10 { get; set; }
-        public string[] oclc { get; set; }
-        public string[] librarything { get; set; }
-        public string[] goodreads { get; set; }
+        public string[] Lccn { get; set; }
+        public string[] Openlibrary { get; set; }
+        public string[] Isbn_10 { get; set; }
+        public string[] Oclc { get; set; }
+        public string[] Librarything { get; set; }
+        public string[] Goodreads { get; set; }
     }
 
     public class Classifications
     {
-        public string[] dewey_decimal_class { get; set; }
+        public string[] Dewey_decimal_class { get; set; }
     }
 
     public class Publisher
     {
-        public string name { get; set; }
+        public string Name { get; set; }
     }
 
     public class Subject
     {
-        public string url { get; set; }
-        public string name { get; set; }
+        public string Url { get; set; }
+        public string Name { get; set; }
     }
 
     public class Author
     {
-        public string url { get; set; }
-        public string name { get; set; }
+        public string Url { get; set; }
+        public string Name { get; set; }
     }
 
     public class Publish_Places
     {
-        public string name { get; set; }
+        public string Name { get; set; }
     }
 
     public class Cover
     {
-        public string small { get; set; }
-        public string large { get; set; }
-        public string medium { get; set; }
+        public string Small { get; set; }
+        public string Large { get; set; }
+        public string Medium { get; set; }
     }
 
-
+    /// <summary>
+    /// They are just the important entities for a book, what i used on the DetailsPage
+    /// </summary>
     public class ImportantDetails
     {
         public string AuthorName { get; set; }
@@ -82,8 +79,7 @@ namespace Cookbook.Models
         public string ImageL { get; set; }
         public string Title { get; set; }
         public int Pages { get; set; }
-        public ImageSource img { get; set; }
+        public ImageSource Img { get; set; }
 
-        
     }
 }

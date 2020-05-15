@@ -4,38 +4,51 @@ using Windows.UI.Xaml.Controls;
 
 namespace Cookbook.Views
 {
+    /// <summary>
+    /// the codebehind class for the mainpage
+    /// </summary>
     public sealed partial class MainPage : Page
     {
-        public String newApiUrl { get; set; }
-        SearchEntities search = new SearchEntities();
+        /// <summary>
+        /// the api url from the search result
+        /// </summary>
+        public String NewApiUrl { get; set; }
+        /// <summary>
+        /// the search entities object
+        /// </summary>
+        private SearchEntities Search = new SearchEntities();
         public MainPage()
         {
             InitializeComponent();
             CreateSearch();
-            this.DataContext = search;
+            this.DataContext = Search;
         }
-
+        /// <summary>
+        /// initalize the search object
+        /// </summary>
         private void CreateSearch()
         {
-            search.Subject = "";
-            search.Author = "";
-            search.Title = "";
+            Search.Subject = "";
+            Search.Author = "";
+            Search.Title = "";
 
         }
-
+        /// <summary>
+        /// the click event for the search button, and it make the api url and send to the next page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void okButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            search.Title = TitleBox.Text;
-            search.Subject = SubjectBox.Text;
-            search.Author = AutorBox.Text;
+            Search.Title = TitleBox.Text;
+            Search.Subject = SubjectBox.Text;
+            Search.Author = AutorBox.Text;
             Char apostrophe = '"';
-            String newApiUrl =("title="+ apostrophe + search.Title+ apostrophe + "&subject="+ apostrophe + search.Subject+ apostrophe+ "&author="+ apostrophe + search.Author+ apostrophe);
+            String newApiUrl =("title="+ apostrophe + Search.Title+ apostrophe + "&subject="+ apostrophe + Search.Subject+ apostrophe+ "&author="+ apostrophe + Search.Author+ apostrophe);
             ListPage.NewUrl = newApiUrl;
             Frame.Navigate(typeof(ListPage));
 
         }
-
-
     }
 }
 

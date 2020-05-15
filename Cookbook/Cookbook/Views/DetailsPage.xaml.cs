@@ -2,17 +2,20 @@
 using Cookbook.ViewModels;
 using Windows.UI.Xaml.Controls;
 
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace Cookbook.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// The Page of the Details
     /// </summary>
     public sealed partial class DetailsPage : Page
     {
+        /// <summary>
+        /// a bookEntity object
+        /// </summary>
         public static BookEntity BookEntity { get; set; }
+        /// <summary>
+        /// object of the DetailsPageViewModel
+        /// </summary>
         public static DetailsPageViewModel detailsPageViewModel;
         public DetailsPage()
         {
@@ -22,7 +25,9 @@ namespace Cookbook.Views
             DataContext = detailsPageViewModel;
             GetList();
         }
-
+        /// <summary>
+        /// call the viewmodel getData function for the api call
+        /// </summary>
         public async static void GetList()
         {
             await detailsPageViewModel.GetData();

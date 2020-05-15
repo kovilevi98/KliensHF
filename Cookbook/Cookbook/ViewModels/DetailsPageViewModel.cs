@@ -1,33 +1,40 @@
 ﻿using Cookbook.Models;
 using Cookbook.Services;
-using Cookbook.Views;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using Template10.Mvvm;
-using Template10.Services.NavigationService;
 using Windows.UI.Xaml.Media;
 
 namespace Cookbook.ViewModels
 {
-    public  class DetailsPageViewModel : ViewModelBase, INotifyPropertyChanged
+    /// <summary>
+    /// the viewmodel class for DetailsPage. It contains all of the logics and calls, implement the INotifyPropertyChanged for the databinding refresh
+    /// </summary>
+    public class DetailsPageViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private readonly SearchService _searchService;
+        /// <summary>
+        /// the event for the changeing property
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         public event NotifyCollectionChangedEventHandler CollectionChanged;
-      
+        public static BookEntity BookEntity { get; set; }
+
+        /// <summary>
+        /// property change function
+        /// </summary>
+        /// <param name="propertyName"></param>
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        
-        private  ImportantDetails _details { get; set; }
+        /// <summary>
+        /// the important details of a book it call OnPropertyChanged if change something
+        /// </summary>
+        private ImportantDetails _details { get; set; }
         public ImportantDetails Details
         {
             get { return _details; }
@@ -37,7 +44,9 @@ namespace Cookbook.ViewModels
                 OnPropertyChanged();
             }
         }
-        public static BookEntity BookEntity { get; set; }
+          /// <summary>
+          /// default constructor
+          /// </summary>
         public DetailsPageViewModel()
         {
             Details = new ImportantDetails()
@@ -50,32 +59,39 @@ namespace Cookbook.ViewModels
             _searchService = new SearchService();
 
         }
+        /// <summary>
+        /// set the current book what book's entity needed
+        /// </summary>
+        /// <param name="newBook"></param>
         public void SetBook(BookEntity newBook)
         {
             BookEntity = newBook;
         }
+        /// <summary>
+        /// create the good url for the api call, and call the service function with it. And make the new detailsBook with the result
+        /// </summary>
         public async Task GetData()
         {
             String newUrl;
-            if (BookEntity.isbn.Length > 0)
+            if (BookEntity.Isbn.Length > 0)
             {
-                newUrl = ("/api/books?bibkeys=ISBN:" + BookEntity.isbn[0] + "&jscmd=data&format=json");
+                newUrl = ("/api/books?bibkeys=ISBN:" + BookEntity.Isbn[0] + "&jscmd=data&format=json");
             }
-            else if (BookEntity.lccn.Length > 0)
+            else if (BookEntity.Lccn.Length > 0)
             {
-                newUrl = ("/api/books?bibkeys=LCCN:" + BookEntity.lccn[0] + "&jscmd=data&format=json");
+                newUrl = ("/api/books?bibkeys=LCCN:" + BookEntity.Lccn[0] + "&jscmd=data&format=json");
             }
-            else if (BookEntity.oclc.Length > 0)
+            else if (BookEntity.Oclc.Length > 0)
             {
-                newUrl = ("/api/books?bibkeys=OCLC:" + BookEntity.oclc[0] + "&jscmd=data&format=json");
+                newUrl = ("/api/books?bibkeys=OCLC:" + BookEntity.Oclc[0] + "&jscmd=data&format=json");
             }
             else throw new Exception("wrong url for details");
-            
+
             var result = await _searchService.GetDetails(newUrl);
             ImageSource imgt;
-            if (result.cover != null)
+            if (result.Cover != null)
             {
-                imgt = _searchService.GetImgFromUrl(result.cover.large);
+                imgt = _searchService.GetImgFromUrl(result.Cover.Large);
             }
             else
             {
@@ -84,30 +100,30 @@ namespace Cookbook.ViewModels
 
             ImportantDetails temp = new ImportantDetails
             {
-                img = imgt,
-                Pages = result.number_of_pages,
+                Img = imgt,
+                Pages = result.Number_of_pages,
                 Title = "nincs adat",
-                ImageL="nincs adat",
-                ImageM= "nincs adat",
+                ImageL = "nincs adat",
+                ImageM = "nincs adat",
                 AuthorName = "nincs adat",
                 AuthorUrl = "nincs adat"
-        };
+            };
 
-            if (result.title != null)
+            if (result.Title != null)
             {
-                temp.Title = result.title;
+                temp.Title = result.Title;
             }
-            if (result.cover != null)
+            if (result.Cover != null)
             {
-                temp.ImageL = result.cover.large;
-                temp.ImageM = result.cover.medium;
+                temp.ImageL = result.Cover.Large;
+                temp.ImageM = result.Cover.Medium;
             }
-            if (result.authors.Length > 0)
+            if (result.Authors.Length > 0)
             {
-                temp.AuthorName = result.authors[0].name;
-                temp.AuthorUrl = result.authors[0].url;
+                temp.AuthorName = result.Authors[0].Name;
+                temp.AuthorUrl = result.Authors[0].Url;
             }
             Details = temp;
-        }      
+        }
     }
 }
