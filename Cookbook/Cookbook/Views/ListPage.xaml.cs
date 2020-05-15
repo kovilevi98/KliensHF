@@ -19,6 +19,7 @@ namespace Cookbook.Views
         {
             this.InitializeComponent();
             listPageViewModel = new ListPageViewModel(NewUrl);
+            listPageViewModel.ClearLists();
             GetList();
         }
 
@@ -42,5 +43,7 @@ namespace Cookbook.Views
             DetailsPage.BookEntity = bookEntity;
             Frame.Navigate(typeof(DetailsPage));
         }
+
+        
     }
 }

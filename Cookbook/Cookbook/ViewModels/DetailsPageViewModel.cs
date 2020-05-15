@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Template10.Mvvm;
 using Template10.Services.NavigationService;
+using Windows.UI.Xaml.Media;
 
 namespace Cookbook.ViewModels
 {
@@ -71,18 +72,42 @@ namespace Cookbook.ViewModels
             else throw new Exception("wrong url for details");
             
             var result = await _searchService.GetDetails(newUrl);
-            var imgt = _searchService.GetImgFromUrl(result.cover.large);
-            Details = new ImportantDetails
+            ImageSource imgt;
+            if (result.cover != null)
             {
-                img=imgt,
-                ImageL = result.cover.large,
-                ImageM = result.cover.medium,
-                Pages = result.number_of_pages,
-                Title = result.title,
-                AuthorName = result.authors[0].name,
-                AuthorUrl = result.authors[0].url
+                imgt = _searchService.GetImgFromUrl(result.cover.large);
+            }
+            else
+            {
+                imgt = _searchService.GetImgFromUrl(null);
+            }
 
-            };
+            ImportantDetails temp = new ImportantDetails
+            {
+                img = imgt,
+                Pages = result.number_of_pages,
+                Title = "nincs adat",
+                ImageL="nincs adat",
+                ImageM= "nincs adat",
+                AuthorName = "nincs adat",
+                AuthorUrl = "nincs adat"
+        };
+
+            if (result.title != null)
+            {
+                temp.Title = result.title;
+            }
+            if (result.cover != null)
+            {
+                temp.ImageL = result.cover.large;
+                temp.ImageM = result.cover.medium;
+            }
+            if (result.authors.Length > 0)
+            {
+                temp.AuthorName = result.authors[0].name;
+                temp.AuthorUrl = result.authors[0].url;
+            }
+            Details = temp;
         }      
     }
 }

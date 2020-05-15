@@ -34,8 +34,8 @@
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
         </GridView>
-        <Button Name="BackButton" Click="BackButton_Click" Content="Back" Margin="80" FontSize="20"/>
-    </StackPanel>
+            <Button Name="BackButton" Click="BackButton_Click" Content="Back" Margin="80" FontSize="20" HorizontalAlignment="Left"/>
+        </StackPanel>
 
     </ScrollViewer>
 

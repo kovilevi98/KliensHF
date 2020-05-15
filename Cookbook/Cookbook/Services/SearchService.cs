@@ -13,7 +13,7 @@ namespace Cookbook.Services
     class SearchService
     {
         private readonly Uri serverUrl = new Uri("http://openlibrary.org/search.json?");
-        private readonly Uri detailUrl = new Uri("http://openlibrary.org/api/books?");
+        private readonly Uri detailUrl = new Uri("http://openlibrary.org/");
 
         public async Task<ISBN> GetDetails(String s)
         {
@@ -55,6 +55,10 @@ namespace Cookbook.Services
                 Uri newServerUrl = new Uri("http://covers.openlibrary.org");
                 Uri url = new Uri(s);
                 imgsrc = new BitmapImage(url);
+            }
+            if(imgsrc == null)
+            {
+                return new BitmapImage(new Uri("ms-appx:///Assets/sample.png"));
             }
             return imgsrc;
         }

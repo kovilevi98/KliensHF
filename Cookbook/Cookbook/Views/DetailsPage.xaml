@@ -15,27 +15,29 @@
 
 
 
-    <RelativePanel VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Image x:Name="img" Source="{Binding Details.img, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="200" Height="300" Stretch="Uniform"/>
+    <RelativePanel VerticalAlignment="Center" HorizontalAlignment="Center"  Height="600">
+        <Image x:Name="img" Source="{Binding Details.img, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="350" Height="600" Stretch="Uniform"/>
             <TextBlock x:Name="title"
                         RelativePanel.RightOf="img"
                         RelativePanel.AlignTopWith="img"/>
             <TextBlock x:Name="authors"
-                       Text="{Binding Details.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="30"
+                       Text="{Binding Details.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="30" Padding="40"
                         RelativePanel.RightOf="img"
                         RelativePanel.Below="title"/>
              <TextBlock x:Name="summary"
-                        Text="{Binding Details.AuthorName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="30"
+                        Text="{Binding Details.AuthorName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="30" Padding="40"
                         RelativePanel.RightOf="img"
                         RelativePanel.Below="authors" />
-              <TextBlock x:Name="authorurl"
-                        Text="{Binding Details.AuthorUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="30"
+        <TextBlock x:Name="authorurl"
+                        Text="{Binding Details.AuthorUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="30" Padding="40" 
                         RelativePanel.RightOf="img"
-                        RelativePanel.Below="summary" />
-           <Button Content="Download"
-                   RelativePanel.Below="authorurl"
-                   RelativePanel.RightOf="img"
-                        RelativePanel.AlignBottomWithPanel="True" />
+                        RelativePanel.Below="summary" >
+           
+        </TextBlock>
+        <TextBlock  RelativePanel.Below="authorurl"
+                   RelativePanel.RightOf="img" Padding="40">
+            <Hyperlink NavigateUri="{Binding Details.AuthorUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Chak that site</Hyperlink></TextBlock>
+        
 </RelativePanel>
     
 </Page>

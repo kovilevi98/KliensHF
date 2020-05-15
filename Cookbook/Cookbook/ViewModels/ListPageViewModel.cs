@@ -19,6 +19,7 @@ namespace Cookbook.ViewModels
         public static string Result = "Results";
         private String NewUri { get; set; }
 
+
         public ListPageViewModel(String newUrl)
         {
             _searchService = new SearchService();

@@ -29,7 +29,7 @@ namespace Cookbook.Views
             search.Subject = SubjectBox.Text;
             search.Author = AutorBox.Text;
             Char apostrophe = '"';
-            String newApiUrl =("title="+ apostrophe + search.Title+ apostrophe + "& subject="+ apostrophe + search.Subject+ apostrophe+ "&author="+ apostrophe + search.Author+ apostrophe);
+            String newApiUrl =("title="+ apostrophe + search.Title+ apostrophe + "&subject="+ apostrophe + search.Subject+ apostrophe+ "&author="+ apostrophe + search.Author+ apostrophe);
             ListPage.NewUrl = newApiUrl;
             Frame.Navigate(typeof(ListPage));
 
